@@ -1,0 +1,163 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Wall</title>-->
+<!--    <link rel="apple-touch-icon" sizes="180x180" href="static/xre/apple-touch-icon.png">-->
+<!--    <link rel="icon" type="image/png" sizes="32x32" href="static/xre/favicon-32x32.png">-->
+<!--    <link rel="icon" type="image/png" sizes="16x16" href="static/xre/favicon-16x16.png">-->
+<!--    <link rel="manifest" href="static/xre/site.webmanifest">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            background: rgb(44, 52, 53);-->
+<!--            color: white;-->
+<!--            font-family: 'Courier New', Courier, monospace;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            color: coral;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .message-container {-->
+<!--            margin: 20px;-->
+<!--        }-->
+<!--        .message {-->
+<!--            background-color: rgb(102, 29, 226);-->
+<!--            border-radius: 5px;-->
+<!--            padding: 10px;-->
+<!--            margin-bottom: 10px;-->
+<!--        }-->
+<!--        .input-container {-->
+<!--            text-align: center;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+<!--        .input-text {-->
+<!--            width: 80%;-->
+<!--            padding: 10px;-->
+<!--            border-radius: 5px;-->
+<!--            border: none;-->
+<!--        }-->
+<!--        .send-button {-->
+<!--            background-color: rgba(32, 178, 171, 0.593);-->
+<!--            color: whitesmoke;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            padding: 10px 20px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        .send-button:hover {-->
+<!--            background-color: rgb(32, 178, 171);-->
+<!--        }-->
+<!--        img {-->
+<!--            max-width: 100%;-->
+<!--            height: auto;-->
+<!--            border-radius: 5px;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Welcome to the Wall</h1>-->
+<!--<div class="message-container">-->
+<!--    {% for message in messages %}-->
+<!--    <div class="message">-->
+<!--        <strong>{{ message.sender.username }}:</strong> {{ message.content }}-->
+<!--        {% if message.file_path %}-->
+<!--        <br><img src="{{ message.file_path }}" alt="Uploaded Image">-->
+<!--        {% endif %}-->
+<!--    </div>-->
+<!--    {% endfor %}-->
+<!--</div>-->
+<!--<div class="input-container">-->
+<!--    <form action="{{ url_for('send_message') }}" method="POST" enctype="multipart/form-data">-->
+<!--        <textarea class="input-text" name="content" rows="4" placeholder="Type your message here..."></textarea><br>-->
+<!--        <input type="file" name="file" accept="image/*"><br>-->
+<!--        <button type="submit" class="send-button">Send</button>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wall</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="static/xre/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/xre/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/xre/favicon-16x16.png">
+    <link rel="manifest" href="static/xre/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background: rgb(44, 52, 53);
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        h1 {
+            color: coral;
+            text-align: center;
+        }
+        .message-container {
+            margin: 20px;
+        }
+        .message {
+            background-color: rgb(102, 29, 226);
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .input-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .input-text {
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        .send-button {
+            background-color: rgba(32, 178, 171, 0.593);
+            color: whitesmoke;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .send-button:hover {
+            background-color: rgb(32, 178, 171);
+        }
+        .timestamp {
+            float: right;
+            font-size: 0.8em;
+            color: lightgray;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to the Wall</h1>
+<div class="message-container">
+    {% for message in messages %}
+    <div class="message">
+        <strong>{{ message.sender.username }}:</strong> {{ message.content }}
+        <span class="timestamp">{{ message.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+    </div>
+    {% endfor %}
+</div>
+<div class="input-container">
+    <form action="{{ url_for('send_message') }}" method="POST">
+        <textarea class="input-text" name="content" rows="4" placeholder="Type your message here..." required></textarea><br>
+        <button type="submit" class="send-button">Send</button>
+    </form>
+</div>
+<div class="logout-container" style="text-align: center; margin-top: 20px;">
+    <a href="{{ url_for('logout') }}" class="send-button">Logout</a>
+</div>
+</body>
+</html>

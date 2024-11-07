@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/css/style.css">
+    <title>Register</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="static/xre/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/xre/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/xre/favicon-16x16.png">
+    <link rel="manifest" href="static/xre/site.webmanifest">
+    <style>
+        body{
+            background: rgb(44, 52, 53);
+        }
+        h1{
+            color: coral;
+            text-align: center;
+        }
+        .button{
+            font-size: 29px;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: lightseagreen;
+            color: whitesmoke;
+            margin-top: 9px;
+            border-radius: 20px;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+        p{
+            color: blueviolet;
+            text-align: justify;
+        }
+        .c{
+            text-align: center;
+            margin-top: 200px;
+        }
+        .us{
+            background-color: blanchedalmond;
+            border-radius: 5px;
+        }
+        .reg{
+            margin-left: 400px;
+        }
+        .logbutton{
+            font-size: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #204eb2;
+            color: whitesmoke;
+            margin-top: 4px;
+            border-radius: 10px;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Register</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <div class="c">
+        <form method="POST">
+            <input class="us" type="text" name="username" placeholder="Username" required>
+            <input class="us" type="password" name="password" placeholder="Password" required>
+            <button class="logbutton" type="submit">Register</button>
+        </form>
+        <p class="reg">Already have an account? <a class="button" href="{{ url_for('login') }}">Login here</a></p>
+    </div>
+</body>
+</html>
